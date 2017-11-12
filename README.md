@@ -17,7 +17,7 @@ Option 1: In IntegrityClient folder
 - Optional: Add a custom menu entry with:
 ```
 name: Trigger Doc
-program:  ../jre/bin/javaw.exe
+program:  ../jre/bin/java.exe
 parameter: -jar ../IntegrityTriggerDoc.jar
 ```
 
