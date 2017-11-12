@@ -9,7 +9,7 @@ Why Excel? Initially I thought a html output would be sufficient, but an Excel f
 ![TriggerDoc](doc/TriggerDoc.PNG)
 
 ## Use Cases
-- As an administrator, I want to get an Overview about the triggers defined in my Integrity instance
+- As an administrator, I want to get an overview about the triggers defined in my Integrity instance
 - As an administrator, I want to get an overview which triggers are related to which Type, and if they are active
 
 ## Install
@@ -49,4 +49,5 @@ Option 2: Command Line
 
 ## Known Limitations
 - This Excel will not display any specific relationships between triggers, but it will list the position
-- It can not be determined from the trigger setup if there is a forced before/after rule 
+- It can not be determined from the trigger setup if there is a forced before/after rule
+- The Template path and name as well as the output file path and name is defined within the code and not flexible yet. It is planned to add another parameters to set that, but it's not implemented yet 
