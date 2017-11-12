@@ -28,7 +28,8 @@ Option 2: In a shared folder
 parameter: -jar <your shared folder>/IntegrityTriggerDoc.jar
 ```
 
-Place the doc/TriggerDocTemplate.xslx into your users home directory at your Windows client
+Place the doc/TriggerDocTemplate.xslx into your users home directory at your Windows client.
+The Template layout can be tailord to any layout you want. Only the cell position has to stay. 
 
 ## How to run
 Option 1: Custom Menu
