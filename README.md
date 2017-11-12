@@ -42,6 +42,9 @@ Option 2: Command Line
 - go into your client folder
 - run:  java -jar IntegrityTriggerDoc.jar  (--hostname= --user= --port=)
 
+## Result Analysis 
+- Beside the disabled triggers, sometimes another one will appear in black below the others. This is caused by a recent trigger type change. Then, the old rule is kept in Integrity although you may have turned the trigger to "scheduled". Solution: turn it back to "rule", remove the rule. Save. Then reopen and set again to "scheduled". The rule should now be empty. Same belongs to the timing information (pre/post).  
+
 ##  Development environment
 - PTC Integrity LM 10.9 (also 11.0 should be fine)
 - Netbeans 7.4 (or 8)
