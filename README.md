@@ -51,7 +51,6 @@ Option 2: Command Line
 - Java 1.7 (or 1.8)
 
 ## Known Limitations
-- The script looks for types in the rule. If you mention 5 types that your trigger will not consider, then the script will not take automatically all others. Instead this trigger might be placed in Excel column "rule" only. The pattern the script is checking is the following "field\[Type\]" = "TypeName".
-- This Excel will not display any specific relationships between triggers, but it will list the position
-- It can not be determined from the trigger setup if there is a forced before/after rule
+- The script looks for types in the rule. If you mention 5 types that your trigger will not consider, then the script will not take automatically all others. Instead this trigger might be placed in Excel column "rule" only. The pattern the script is checking is the following only: "field\[Type\]" = "TypeName", "item is segment" => "All Documents", and "item is node/content" => "All Document Nodes"
+- The Trigger Doc will not display any specific relationships between triggers, but it will list the position. It can not be determined from the trigger setup if there is a forced before/after rule configured.
 - The Template path and name as well as the output file path and name is defined within the code and not flexible yet. It is planned to add another parameters to set that, but it's not implemented yet 
