@@ -4,6 +4,8 @@ Creates an Excel Sheet with Trigger Details and its relationship to Integrity Ty
 ## Purpose
 The Trigger Doc utility generates an Excel Sheet with a Trigger Overview. It lists all Trigger names, ordered by Type affected. Additionally, it shows flags identifying the trigger type, if its pre- or post, if it has a script etc.
 
+Why Excel? Initially I thought a html output would be sufficient, but an Excel file is more handy and can be used to track immediately the discussion results to make changes to the trigger configuration. If you need an html file, just save-as html :) 
+
 ![TriggerDoc](doc/TriggerDoc.PNG)
 
 ## Use Cases
