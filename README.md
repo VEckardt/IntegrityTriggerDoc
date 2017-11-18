@@ -25,7 +25,7 @@ parameter: -jar ../IntegrityTriggerDoc.jar
 
 Option 2: In a shared folder
 - Take all files from "dist" folder and place them somewhere centrally
-- Register a custom menu as described before, but with the following change
+- Optional: Register a custom menu as described before, but with the following change
 ```
 parameter: -jar <your shared folder>/IntegrityTriggerDoc.jar
 ```
@@ -36,11 +36,13 @@ The Template layout can be tailord to any layout you want. Only the cell positio
 ## How to run
 Option 1: Custom Menu
 - click Custom > Trigger Doc
-- Then review the outcome in your users home, the resulting file name will be somehting like TriggerDoc-2017-11-12.xlsx
+- Then review the outcome in your users home, the resulting file name will be something like TriggerDoc-2017-11-12.xlsx
 
 Option 2: Command Line
 - go into your client folder
 - run:  java -jar IntegrityTriggerDoc.jar  (--hostname= --user= --port=)
+or
+- run:  java -jar <your shared folder>IntegrityTriggerDoc.jar  (--hostname= --user= --port=)
 
 ## Result Analysis 
 - Beside the disabled triggers, sometimes another one will appear in black below the others. This is caused by a recent trigger type change. Then, the old rule is kept in Integrity although you may have turned the trigger to "scheduled". Solution: turn it back to "rule", remove the rule. Save. Then reopen and set again to "scheduled". The rule should now be empty. Same belongs to the timing information (pre/post).  
