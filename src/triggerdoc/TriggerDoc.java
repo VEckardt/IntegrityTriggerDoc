@@ -1,7 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright:      Copyright 2017 (c) Parametric Technology GmbH
+ * Product:        PTC Integrity Lifecycle Manager
+ * Author:         Volker Eckardt, Principal Consultant ALM
+ * Purpose:        Custom Developed Code
+ * **************  File Version Details  **************
+ * Revision:       $Revision: 1.6 $
+ * Last changed:   $Date: 2017/11/18 02:20:35CET $
  */
+
 package triggerdoc;
 
 import com.mks.api.Command;
@@ -96,10 +102,14 @@ public class TriggerDoc {
             log(cmd.getApp() + " " + cmd.getCommandName() + " exit code: " + response.getExitCode());
 
             WorkItemIterator wit = response.getWorkItems();
+            row = 7;
             while (wit.hasNext()) {
                 WorkItem wi = wit.next();
 
                 TriggerDef td = new TriggerDef(wi);
+
+                writeTriggerList(td, row++);
+
                 for (String type : td.typeName) {
 
                     if (triggerMap.containsKey(type)) {
@@ -125,17 +135,18 @@ public class TriggerDoc {
             int col = 0;
             for (String typename : triggerMap.keySet()) {
                 col = col + 2;
-                writeXLSXData(5, col, typename, true);
+                writeXLSXData(1, 5, col, typename, true);
                 row = 2;
                 List<TriggerDef> tdl = triggerMap.get(typename);
                 for (TriggerDef td : tdl) {
-                    log(td.position + ": " + td.name + ", " + td.rule + ", " + td.type + ", " + td.ruleType + " => " + td.typeName);
-                    writeXLSXData(3 + row * 2, col, td.position + ": " + td.name + "\n" + td.getFlags(), td.isActive);
+                    // log(td.position + ": " + td.name + ", " + td.rule + ", " + td.type + ", " + td.ruleType + " => " + td.typeName);
+                    writeXLSXData(1, 3 + row * 2, col, td.position + ": " + td.name + "\n" + td.getFlags(), td.isActive);
                     row++;
                 }
             }
 
-            writeXLSXData(3, 2, session.getServerInfo(), true);
+            writeXLSXData(1, 3, 2, session.getServerInfo(), true);
+            writeXLSXData(2, 3, 2, session.getServerInfo(), true);
             writeXLSXFile();
 
         } catch (APIException ex) {
@@ -145,6 +156,28 @@ public class TriggerDoc {
             log("\nERROR: " + eh.getMessage() + "\n");
             exit(-2);
         }
+    }
+
+    private static void writeTriggerList(TriggerDef td, int row) {
+        int col = 1;
+        // for (String typename : triggerMap.keySet()) {
+            // writeXLSXData(2, row, col, typename, true);
+        // List<TriggerDef> tdl = triggerMap.get(typename);
+        // for (TriggerDef td : tdl) {
+        log(td.position + ": " + td.name + ", " + td.rule + ", " + td.type + ", " + td.ruleType + " => " + td.typeName);
+        writeXLSXData(2, row, col + 1, td.position + "", td.isActive);
+        writeXLSXData(2, row, col + 2, td.name, td.isActive);
+        writeXLSXData(2, row, col + 3, td.description, td.isActive);
+        writeXLSXData(2, row, col + 4, td.type, td.isActive);
+        writeXLSXData(2, row, col + 5, td.rule, td.isActive);
+        writeXLSXData(2, row, col + 6, td.script, td.isActive);
+        writeXLSXData(2, row, col + 7, td.scriptTiming, td.isActive);
+        writeXLSXData(2, row, col + 8, td.scriptParams.toString(), td.isActive);
+        writeXLSXData(2, row, col + 9, td.query, td.isActive);
+        writeXLSXData(2, row, col + 10, td.assign, td.isActive);
+        row++;
+        // }
+        // }
     }
 
     private static String getParam(String arg, String param, String defaultValue) {

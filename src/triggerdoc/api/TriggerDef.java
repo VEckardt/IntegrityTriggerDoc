@@ -4,11 +4,12 @@
  * Author:         Volker Eckardt, Principal Consultant ALM
  * Purpose:        Custom Developed Code
  * **************  File Version Details  **************
- * Revision:       $Revision: 1.1 $
- * Last changed:   $Date: 2017/11/12 01:46:46CET $
+ * Revision:       $Revision: 1.2 $
+ * Last changed:   $Date: 2017/11/18 02:18:20CET $
  */
 package triggerdoc.api;
 
+import com.mks.api.response.Item;
 import com.mks.api.response.WorkItem;
 import static java.lang.String.format;
 import java.util.ArrayList;
@@ -30,9 +31,10 @@ public class TriggerDef {
     public int position;
     public String script;
     public String query;
-    public List scriptParams;
+    public String scriptParams ="";
     public String scriptTiming;
-    public List assign;
+    public String description;
+    public String assign = "";
     public Boolean isActive = true;
 
     public TriggerDef(WorkItem wi) {
@@ -42,9 +44,22 @@ public class TriggerDef {
         query = wi.getField("query").getValueAsString();
         position = wi.getField("position").getInteger();
         script = wi.getField("script").getValueAsString();
-        scriptParams = wi.getField("scriptParams").getList();
+        description = wi.getField("description").getValueAsString();
+
+        for (Object param : wi.getField("scriptParams").getList()) {
+            Item item = (Item) param;
+            scriptParams += scriptParams.isEmpty() ? "" : ",\n";
+            scriptParams += item.getId() + "=" + item.getField("value").getValueAsString();
+        }
+
+        // scriptParams = wi.getField("scriptParams").getList();
         scriptTiming = wi.getField("scriptTiming").getValueAsString();
-        assign = wi.getField("assign").getList();
+        // assign = wi.getField("assign").getList();
+        for (Object param : wi.getField("assign").getList()) {
+            Item item = (Item) param;
+            assign += assign.isEmpty() ? "" : ",\n";
+            assign += item.getId() + "=" + item.getField("value").getValueAsString();
+        }        
 
         if (rule != null && rule.contains("item is segment")) {
             typeName.add("All Documents");

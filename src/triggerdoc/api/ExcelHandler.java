@@ -4,8 +4,8 @@
  * Author:         Volker Eckardt, Principal Consultant ALM
  * Purpose:        Custom Developed Code
  * **************  File Version Details  **************
- * Revision:       $Revision: 1.2 $
- * Last changed:   $Date: 2017/11/12 12:12:58CET $
+ * Revision:       $Revision: 1.3 $
+ * Last changed:   $Date: 2017/11/18 02:18:19CET $
  */
 package triggerdoc.api;
 
@@ -49,7 +49,7 @@ public class ExcelHandler {
      * @param text
      * @param isActive
      */
-    public static void writeXLSXData(int row, int col, String text, Boolean isActive) {
+    public static void writeXLSXData(int sheetNum, int row, int col, String text, Boolean isActive) {
 
         if (workbook == null) {
             try (FileInputStream file = new FileInputStream(userHome + "\\TriggerDocTemplate.xlsx")) {
@@ -63,7 +63,7 @@ public class ExcelHandler {
             }
         }
 
-        XSSFSheet sheet = workbook.getSheetAt(0);
+        XSSFSheet sheet = workbook.getSheetAt(sheetNum-1);
 
         // define Style Copy Cell
         XSSFRow copyRow = sheet.getRow(row > 6 ? 6 : 4);
@@ -85,7 +85,7 @@ public class ExcelHandler {
         }
 
         // Plain data entry, in black
-        if (isActive) {
+        if (isActive || text == null || text.length() == 0) {
             cell.setCellValue(text);
         } else {
             // data entry in gray for deactivated triggers
